@@ -271,6 +271,15 @@ namespace GameOfLife
             }
             dataGridView1.ClearSelection();
         }
+        // Don't forget to handle cleanup when your application closes
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (life.running)
+            {
+                life.running = false;
+                loopThread.Join();
+            }
+        }
 
     }
 }
